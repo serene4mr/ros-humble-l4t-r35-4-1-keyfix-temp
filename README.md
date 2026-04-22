@@ -4,7 +4,12 @@ Temporary image repo that patches ROS 2 apt key/repo configuration on top of:
 
 - `dustynv/ros:humble-ros-base-l4t-r35.4.1`
 
-This avoids `EXPKEYSIG F42ED6FBAB17C654` failures during `apt-get update`.
+This avoids `EXPKEYSIG F42ED6FBAB17C654` failures during `apt-get update`, preinstalls Python venv support (`python3-venv` / `python3.8-venv`) for `pipx`-based setup scripts, and adds ROS/colcon compatibility shims for downstream builds that expect:
+- `/opt/ros/humble/setup.bash`
+- `/opt/ros/humble/local_setup.bash`
+- `colcon build --mixin ...` support
+- `colcon` default mixin index configured (`release`, `compile-commands`, `ccache`)
+- `ros-humble-diagnostic-updater` available for downstream package builds
 
 ## Build
 
